@@ -97,9 +97,18 @@ module.exports = {
                 lim: 1,
                 actn: function(creep){
                   if(creep.store.getFreeCapacity() > 0) {
-                    var container = creep.room.find(STRUCTURE_CONTAINER);
-                    if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                      creep.moveTo(container);
+                    var container = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                      filter: structure =>
+                      {
+                          return structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > creep.carryCapacity;
+                      }
+                    });
+                    if (container)
+                    {
+                        if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                        {
+                            creep.moveTo(container);
+                        }
                     }
                   }
                   else {
