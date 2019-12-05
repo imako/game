@@ -7,30 +7,30 @@ module.exports.loop = function () {
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    
+
     if(harvesters.length < 2) {
         var newName = 'Harvester' + Game.time;
-        Game.spawns['home1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'harvester'}});        
+        Game.spawns['home1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName,
+            {memory: {role: 'harvester'}});
     }
     if(builders.length < 2) {
         var newName = 'builder' + Game.time;
-        Game.spawns['home1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'builder'}});        
+        Game.spawns['home1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName,
+            {memory: {role: 'builder'}});
     }
     if(upgraders.length < 1) {
         var newName = 'upgrader' + Game.time;
-        Game.spawns['home1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'upgrader'}});        
+        Game.spawns['home1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName,
+            {memory: {role: 'upgrader'}});
     }
-    
-    
-    if(Game.spawns['home1'].spawning) { 
+
+
+    if(Game.spawns['home1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['home1'].spawning.name];
         Game.spawns['home1'].room.visual.text(
             '🛠️' + spawningCreep.memory.role,
-            Game.spawns['home1'].pos.x + 1, 
-            Game.spawns['home1'].pos.y, 
+            Game.spawns['home1'].pos.x + 1,
+            Game.spawns['home1'].pos.y,
             {align: 'left', opacity: 0.8});
     }
 
