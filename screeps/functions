@@ -1,0 +1,7 @@
+function testMSG(creep) {
+    creep.say('helloWorld');
+}
+
+module.exports = {
+    testMSG: testMSG
+};
