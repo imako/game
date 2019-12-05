@@ -1,3 +1,3 @@
-function testMSG(creep) {
+testMSG: function(creep) {
     creep.say('helloWorld');
 }
